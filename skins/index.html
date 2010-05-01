@@ -1,0 +1,12 @@
+<% extends ./base.html %>
+
+<% subskin content %>
+<form action="/" method="post" accept-charset="utf-8">
+  <p><textarea name="body" rows="8" cols="40"></textarea></p>
+  <p><input type="submit" name="save" value="Create &rarr;"/></p>
+</form>
+
+<% for post in <% allPosts %> render listItem %>
+
+<% subskin listItem %>
+<p><% post.body | markdown %></p>
