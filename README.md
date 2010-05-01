@@ -1,4 +1,5 @@
-This is a minimal RingoJS microblogging application.
+This is a minimal [RingoJS] microblogging application.
+
 To run it launch ringo with the main script, e.g.:
 
     ringo main.js
@@ -6,3 +7,5 @@ To run it launch ringo with the main script, e.g.:
 Then point your browser to this URL:
 
     http://localhost:8080/
+
+  [RingoJS]: http://ringojs.org/
