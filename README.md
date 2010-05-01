@@ -4,7 +4,7 @@ First, in case you don't have `berkeleystore` installed yet:
 
     ringo-admin install hns/berkeleystore
 
-To run it launch ringo with the main script, e.g.:
+Now, to run the app launch ringo with the main script, e.g.:
 
     ringo main.js
 
