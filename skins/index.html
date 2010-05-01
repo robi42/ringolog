@@ -1,12 +1,28 @@
 <% extends ./base.html %>
 
-<% subskin content %>
-<form action="/" method="post" accept-charset="utf-8">
-  <p><textarea name="body" rows="8" cols="40"></textarea></p>
-  <p><input type="submit" name="save" value="Create &rarr;"/></p>
-</form>
+<% subskin head %>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#submit').click(function () {
+            $.post('/', {body: $('#data').val(), save: true}, function (data) {
+                $('#posts').html(data);
+                $('#data').val('');
+            });
+            return false;
+        });
+    });
+</script>
 
-<% for post in <% allPosts %> render listItem %>
+<% subskin content %>
+<div id="form">
+  <p><textarea id="data" rows="8" cols="40"></textarea></p>
+  <p><button type="submit" id="submit">Create &rarr;</button></p>
+</div>
+
+<div id="posts">
+  <% for post in <% allPosts %> render listItem %>
+</div>
 
 <% subskin listItem %>
-<p><% post.body | markdown %></p>
+<% post.body | markdown %>
