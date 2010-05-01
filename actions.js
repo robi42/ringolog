@@ -8,4 +8,4 @@ exports.index = function (req) {
     return skinResponse('skins/index.html', {
         allPosts: Post.all().sort(function (a, b) a.created < b.created)
     });
-}
+};
