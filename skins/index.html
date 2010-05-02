@@ -6,7 +6,7 @@
     $(document).ready(function () {
         $('#submit').click(function () {
             $.post('/', {body: $('#data').val(), save: true}, function (data) {
-                $('#posts').html(data);
+                $('#posts .post').first().before(data);
                 $('#data').val('');
             });
             return false;
@@ -25,4 +25,6 @@
 </div>
 
 <% subskin listItem %>
-<% post.body | markdown %>
+<div class="post">
+  <% post.body | markdown %>
+</div>
