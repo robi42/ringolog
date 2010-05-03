@@ -12,14 +12,19 @@ exports.middleware = [
     'ringo/middleware/error',
     'ringo/middleware/notfound',
     // 'ringo/middleware/profiler',
+    'auth'
 ];
 
 exports.app = require('ringo/webapp').handleRequest;
 
 exports.macros = [
     'ringo/skin/macros',
-    'ringo/skin/filters',
+    'ringo/skin/filters'
 ];
+
+exports.auth = {
+    login: {admin: 'e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4'} // 'secret' ;)
+};
 
 var {Store} = require('ringo/storage/berkeleystore');
 exports.store = new Store('db');

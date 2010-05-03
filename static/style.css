@@ -3,7 +3,7 @@ body, html {
     padding: 0;
 }
 
-body {
+body, textarea {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 90%;
     line-height: 160%;
@@ -11,10 +11,37 @@ body {
 
 #content {
     margin: 0 auto;
-    width: 800px;
+    width: 600px;
+}
+
+#menu {
+    float: right;
+}
+
+.post {
+    margin-bottom: 1.5em;
+    padding: 0.1em 1em 1em 1em;
+    background-color: #eee;
+}
+
+#dummy {
+    background-color: #fff;
 }
 
 textarea {
     width: 90%;
     height: 10em;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: dodgerblue;
+}
+
+a:active {
+    color: darkorange;
 }

@@ -5,6 +5,10 @@
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#submit').click(function () {
+            if ($('#data').val() === '') {
+                alert('Please provide some content.');
+                return false;
+            }
             $.post('/', {body: $('#data').val(), save: true}, function (data) {
                 $('#posts .post').first().before(data);
                 $('#data').val('');
@@ -15,16 +19,35 @@
 </script>
 
 <% subskin content %>
-<div id="form">
-  <p><textarea id="data" rows="8" cols="40"></textarea></p>
-  <p><button type="submit" id="submit">Create &rarr;</button></p>
+<h1><a href="/">Ringolog</a></h1>
+
+<div id="menu">
+  <% if not <% authorized %> render login %>
+  <% if <% authorized %> render logout %>
 </div>
+
+<% if <% authorized %> render form %>
 
 <div id="posts">
-  <% for post in <% allPosts %> render listItem %>
+  <% for post in <% allPosts %> render ./post.html %>
+  <div id="dummy" class="post"></div>
 </div>
 
-<% subskin listItem %>
-<div class="post">
-  <% post.body | markdown %>
+<% subskin login %>
+<a href="/login">Login</a>
+
+<% subskin logout %>
+<a href="/logout">Logout</a>
+
+<% subskin form %>
+<div id="form">
+  <p><textarea id="data" rows="8" cols="40"></textarea></p>
+  <p>
+    <button type="submit" id="submit">Create &rarr;</button> |
+    <a href="http://kreatives-chaos.com/markdown_help.html" target="_blank">
+      <small>Markdown?</small>
+    </a>
+  </p>
 </div>
+
+<% include ./post.html %>

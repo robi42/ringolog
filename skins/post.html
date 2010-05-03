@@ -1,3 +1,4 @@
 <div class="post">
   <% post.body | markdown %>
+  <small><% post.created | dateFormat "h:mm a',' EEEE',' MMM d',' ''yy" %></small>
 </div>
