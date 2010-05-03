@@ -26,6 +26,7 @@ body, textarea {
 
 #dummy {
     background-color: #fff;
+    display: none;
 }
 
 textarea {
