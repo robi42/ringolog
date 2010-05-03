@@ -2,6 +2,7 @@
 
 <% subskin head %>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf-8">
     $(document).ready(function () {
         $('#submit').click(function () {
@@ -11,6 +12,7 @@
             }
             $.post('/', {body: $('#data').val(), save: true}, function (data) {
                 $('#posts .post').first().before(data);
+                $('#posts .post').first().effect('highlight', {}, 1500);
                 $('#data').val('');
             });
             return false;
