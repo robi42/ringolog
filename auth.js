@@ -6,17 +6,18 @@ module.shared = true;
 
 exports.middleware = function (app) {
     return function (env) {
-        if (auth[env.PATH_INFO.replace(/\//g, '')]) {
-            var msg = '401 Unauthorized';
-            if (env.HTTP_AUTHORIZATION) {
+        if (auth[env.PATH_INFO.replace(/^\//, '').replace(/\/$/, '')]) {
+            var toAuth = // Determine path to authorize with credentials.
+                    auth[env.PATH_INFO.replace(/^\//, '').replace(/\/$/, '')];
+            if (env.HTTP_AUTHORIZATION) { // Extract credentials from HTTP.
                 var credentials = base64.decode(env.HTTP_AUTHORIZATION.
                         replace(/Basic /, '')).split(':');
-                if (credentials[1].digest('sha1') === auth[env.PATH_INFO.
-                        replace(/\//g, '')][credentials[0]]) {
-                    return app(env);
+                if (credentials[1].digest('sha1') === toAuth[credentials[0]]) {
+                    return app(env); // Authorization.
                 }
             }
-            return {
+            var msg = '401 Unauthorized';
+            return { // Access denied.
                 status: 401,
                 headers: {
                     'Content-Type': 'text/html',
