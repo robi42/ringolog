@@ -3,21 +3,22 @@ exports.httpConfig = {
 };
 
 exports.urls = [
-    ['/', 'actions'],
+    ['/', 'actions']
 ];
 
 exports.middleware = [
+    'auth',
     'ringo/middleware/etag',
     'ringo/middleware/responselog',
     'ringo/middleware/error',
     'ringo/middleware/notfound',
-    // 'ringo/middleware/profiler',
-    'auth'
+    // 'ringo/middleware/profiler'
 ];
 
 exports.app = require('ringo/webapp').handleRequest;
 
 exports.macros = [
+    './helpers',
     'ringo/skin/macros',
     'ringo/skin/filters'
 ];

@@ -2,5 +2,9 @@
   <% post.body | markdown %>
   <small>
     <% post.created | dateFormat "h:mm a',' EEEE',' MMM d',' ''yy" %>
+    <% if not <% ajax %> render commentsLink %>
   </small>
 </div>
+
+<% subskin commentsLink %>
+| <a href="/<% post._id %>/#disqus_thread">Comments</a>

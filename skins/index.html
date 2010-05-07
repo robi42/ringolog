@@ -4,13 +4,14 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf-8">
+//<![CDATA[
     $(document).ready(function () {
         $('#submit').click(function () {
             if ($('#data').val() === '') {
                 alert('Please provide some content.');
                 return false;
             }
-            $.post('/', {body: $('#data').val(), save: true}, function (data) {
+            $.post('/create', {body: $('#data').val()}, function (data) {
                 $('#posts .post').first().before(data);
                 $('#posts .post').first().effect('highlight', {}, 1500);
                 $('#data').val('');
@@ -24,6 +25,7 @@
             return false;
         });
     });
+//]]>
 </script>
 
 <% subskin content %>

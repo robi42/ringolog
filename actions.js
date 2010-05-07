@@ -1,14 +1,9 @@
 include('ringo/webapp/response');
 include('./model');
 
-exports.index = function (req) {
-    if (req.session.data.authorized && req.isXhr && req.isPost &&
-            req.params.save) {
-        var newPost = new Post({body: req.params.body, created: new Date()});
-        newPost.save();
-        req.session.data.postsRangeFrom++;
-        req.session.data.postsRangeTo++;
-        return skinResponse('skins/post.html', {post: newPost});
+exports.index = function (req, id) {
+    if (id && id.match(/[1-9][0-9]*/)) {
+        return skinResponse('skins/main.html', {post: Post.get(id)});
     }
     req.session.data.postsRangeFrom = 0;
     req.session.data.postsRangeTo = 2;
@@ -20,6 +15,17 @@ exports.index = function (req) {
                         req.session.data.postsRangeTo).
                 select()
     });
+};
+
+exports.create = function (req) {
+    if (req.session.data.authorized && req.isXhr && req.isPost) {
+        var newPost = new Post({body: req.params.body, created: new Date()});
+        newPost.save();
+        req.session.data.postsRangeFrom++;
+        req.session.data.postsRangeTo++;
+        return skinResponse('skins/post.html', {post: newPost, ajax: true});
+    }
+    return redirectResponse('/');
 };
 
 exports.more = function (req) {

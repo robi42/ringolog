@@ -1,0 +1,35 @@
+<% extends ./base.html %>
+
+<% subskin head %>
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+    var disqus_developer = 1;
+    var disqus_identifier =  <% post._id %> + Date.now() + Math.random();
+//]]>
+</script>
+
+<% subskin content %>
+<h1><a href="/">Ringolog</a></h1>
+
+<div id="menu">
+  <% if not <% authorized %> render login %>
+  <% if <% authorized %> render logout %>
+</div>
+
+<% render ./post.html %>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+    (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = 'http://ringolog.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] ||
+                document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+//]]>
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=ringolog">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
