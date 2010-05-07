@@ -15,9 +15,9 @@ exports.index = function (req) {
     return skinResponse('skins/index.html', {
         authorized: req.session.data.authorized,
         posts: Post.query().
+                orderBy('created desc').
                 range(req.session.data.postsRangeFrom,
                         req.session.data.postsRangeTo).
-                orderBy('created desc').
                 select()
     });
 };
@@ -28,9 +28,9 @@ exports.more = function (req) {
         req.session.data.postsRangeTo += 3;
         return skinResponse('skins/more.html', {
             posts: Post.query().
+                    orderBy('created desc').
                     range(req.session.data.postsRangeFrom,
                             req.session.data.postsRangeTo).
-                    orderBy('created desc').
                     select()
         });
     }
