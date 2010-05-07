@@ -18,7 +18,7 @@
             return false;
         });
         $('#more').click(function () {
-            $.get('/', {more: true}, function (data) {
+            $.get('/more', function (data) {
                 $('#dummy').before(data);
             });
             return false;

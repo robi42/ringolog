@@ -10,7 +10,17 @@ exports.index = function (req) {
         req.session.data.postsRangeTo++;
         return skinResponse('skins/post.html', {post: newPost});
     }
-    if (req.isXhr && req.isGet && req.params.more) {
+    req.session.data.postsRangeFrom = 0;
+    req.session.data.postsRangeTo = 2;
+    return skinResponse('skins/index.html', {
+        authorized: req.session.data.authorized,
+        posts: Post.query().range(req.session.data.postsRangeFrom,
+                req.session.data.postsRangeTo).orderBy('created desc').select()
+    });
+};
+
+exports.more = function (req) {
+    if (req.isXhr) {
         req.session.data.postsRangeFrom += 3;
         req.session.data.postsRangeTo += 3;
         return skinResponse('skins/more.html', {
@@ -19,13 +29,7 @@ exports.index = function (req) {
                     select()
         });
     }
-    req.session.data.postsRangeFrom = 0;
-    req.session.data.postsRangeTo = 2;
-    return skinResponse('skins/index.html', {
-        authorized: req.session.data.authorized,
-        posts: Post.query().range(req.session.data.postsRangeFrom,
-                req.session.data.postsRangeTo).orderBy('created desc').select()
-    });
+    return redirectResponse('/');
 };
 
 exports.login = function (req) {
