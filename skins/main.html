@@ -9,13 +9,6 @@
 </script>
 
 <% subskin content %>
-<h1><a href="/">Ringolog</a></h1>
-
-<div id="menu">
-  <% if not <% authorized %> render login %>
-  <% if <% authorized %> render logout %>
-</div>
-
 <% render ./post.html %>
 
 <div id="disqus_thread"></div>
