@@ -26,8 +26,7 @@ exports.auth = {
     login: {admin: 'e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4'} // 'secret' ;)
 };
 
-var {Store} = require('ringo/storage/berkeleystore');
-exports.store = new Store('db');
+exports.store = require('ringo/storage/hibernate');
 
 exports.charset = 'UTF-8';
 exports.contentType = 'text/html';

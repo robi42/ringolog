@@ -4,13 +4,27 @@ include('./model');
 exports.index = function (req) {
     if (req.session.data.authorized && req.isXhr && req.isPost &&
             req.params.save) {
-        var newPost = new Post({body: req.params.body, created: Date.now()});
+        var newPost = new Post({body: req.params.body, created: new Date()});
         newPost.save();
+        req.session.data.postsRangeFrom++;
+        req.session.data.postsRangeTo++;
         return skinResponse('skins/post.html', {post: newPost});
     }
+    if (req.isXhr && req.isGet && req.params.more) {
+        req.session.data.postsRangeFrom += 3;
+        req.session.data.postsRangeTo += 3;
+        return skinResponse('skins/more.html', {
+            posts: Post.query().range(req.session.data.postsRangeFrom,
+                    req.session.data.postsRangeTo).orderBy('created desc').
+                    select()
+        });
+    }
+    req.session.data.postsRangeFrom = 0;
+    req.session.data.postsRangeTo = 2;
     return skinResponse('skins/index.html', {
         authorized: req.session.data.authorized,
-        allPosts: Post.all().sort(function (a, b) a.created < b.created)
+        posts: Post.query().range(req.session.data.postsRangeFrom,
+                req.session.data.postsRangeTo).orderBy('created desc').select()
     });
 };
 

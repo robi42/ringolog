@@ -1,8 +1,12 @@
 This is a minimal [RingoJS] microblogging application.
 
-First, in case you don't have `berkeleystore` installed yet:
+First, in case you don't have `ringo-hibernate` installed yet:
 
-    ringo-admin install hns/berkeleystore
+    ringo-admin install robi42/ringo-hibernate
+
+Initially, create MySQL DB, e.g.:
+
+    mysql -uroot < config/init-mysql.sql
 
 Now, to run the app launch ringo with the main script, e.g.:
 

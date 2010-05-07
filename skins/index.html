@@ -17,6 +17,12 @@
             });
             return false;
         });
+        $('#more').click(function () {
+            $.get('/', {more: true}, function (data) {
+                $('#dummy').before(data);
+            });
+            return false;
+        });
     });
 </script>
 
@@ -31,9 +37,14 @@
 <% if <% authorized %> render form %>
 
 <div id="posts">
-  <% for post in <% allPosts %> render ./post.html %>
+  <% for post in <% posts %> render ./post.html %>
   <div id="dummy" class="post"></div>
 </div>
+
+<% if <% posts.length %> render moreLink %>
+
+<% subskin moreLink %>
+<a href="#" id="more">More &darr;<a/>
 
 <% subskin login %>
 <a href="/login" rel="nofollow">Login</a>
