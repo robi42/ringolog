@@ -14,8 +14,11 @@ exports.index = function (req) {
     req.session.data.postsRangeTo = 2;
     return skinResponse('skins/index.html', {
         authorized: req.session.data.authorized,
-        posts: Post.query().range(req.session.data.postsRangeFrom,
-                req.session.data.postsRangeTo).orderBy('created desc').select()
+        posts: Post.query().
+                range(req.session.data.postsRangeFrom,
+                        req.session.data.postsRangeTo).
+                orderBy('created desc').
+                select()
     });
 };
 
@@ -24,8 +27,10 @@ exports.more = function (req) {
         req.session.data.postsRangeFrom += 3;
         req.session.data.postsRangeTo += 3;
         return skinResponse('skins/more.html', {
-            posts: Post.query().range(req.session.data.postsRangeFrom,
-                    req.session.data.postsRangeTo).orderBy('created desc').
+            posts: Post.query().
+                    range(req.session.data.postsRangeFrom,
+                            req.session.data.postsRangeTo).
+                    orderBy('created desc').
                     select()
         });
     }
