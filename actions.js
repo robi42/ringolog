@@ -1,5 +1,6 @@
 include('ringo/webapp/response');
 include('./model');
+include('./feed');
 
 exports.index = function (req, id) {
     if (id && id.match(/[1-9][0-9]*/)) {
@@ -53,4 +54,12 @@ exports.logout = function (req) {
         req.session.data.authorized = false;
     }
     return redirectResponse('/');
+};
+
+exports.feed = function (req, type) {
+    type = /rss\.xml/i.test(type) ? 'rss_2.0' : 'atom_1.0';
+    var res = new Response(createFeed(req, type));
+    res.contentType = /rss\.xml/i.test(type) ?
+            'application/rss+xml' : 'application/atom+xml';
+    return res;
 };

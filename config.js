@@ -27,6 +27,12 @@ exports.auth = {
     login: {admin: 'e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4'} // 'secret' ;)
 };
 
+exports.jars = [
+    'jars/mysql-connector-java-5.1.12-bin.jar',
+    'jars/jdom-1.1.1.jar',
+    'jars/rome-1.0.jar'
+];
+
 exports.store = require('ringo/storage/hibernate');
 
 exports.charset = 'UTF-8';
