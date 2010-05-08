@@ -35,7 +35,7 @@ exports.create = function (req) {
 
 exports.update = function (req) {
     if (req.session.data.authorized && req.isXhr && req.isPost) {
-        var post = Post.get(parseInt(req.params.id));
+        var post = Post.get(req.params.id);
         post.body = req.params.body;
         post.modified = new Date();
         post.save();
