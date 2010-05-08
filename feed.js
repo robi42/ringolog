@@ -30,4 +30,4 @@ function createFeed(req, feedType) {
     feed.setEntries(entries);
     output = new SyndFeedOutput();
     return output.outputString(feed);
-};
+}
