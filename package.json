@@ -1,0 +1,7 @@
+{
+    "name": "ringolog",
+    "version": "0.1.0",
+    "description": "A minimal RingoJS microblogging app.",
+    "keywords": ["ringo", "blog", "app"],
+    "author": "Robert Thurnher (http://robert42.com/) <r.thurnher@gmail.com>"
+}

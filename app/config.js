@@ -27,7 +27,7 @@ exports.auth = {
     login: {admin: 'e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4'} // 'secret' ;)
 };
 
-exports.baseUrl = 'http://localhost:8080/'; // Used by feeds.
+exports.baseUrl = 'http://localhost:8080/'; // Used by feeds and tests.
 
 exports.jars = [
     'jars/mysql-connector-java-5.1.12-bin.jar',

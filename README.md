@@ -6,11 +6,11 @@ First, in case you don't have `ringo-hibernate` installed yet:
 
 Initially, create MySQL DB, e.g.:
 
-    mysql -uroot < config/init-mysql.sql
+    mysql -uroot < app/config/init-mysql.sql
 
 Now, to run the app launch ringo with the main script, e.g.:
 
-    ringo main.js
+    ringo app/main.js
 
 Then point your browser to this URL:
 
