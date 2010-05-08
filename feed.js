@@ -6,7 +6,7 @@ var {SyndFeedOutput} = com.sun.syndication.io;
 
 exports.createFeed = function (type) {
     var posts = Post.query().orderBy('created desc').limit(5).select();
-    var output, entryContent, entry,
+    var entry, entryContent,
         entries = new java.util.ArrayList(),
         feed = new SyndFeedImpl();
     feed.feedType = type;
@@ -25,6 +25,5 @@ exports.createFeed = function (type) {
        entries.add(entry);
     }
     feed.entries = entries;
-    output = new SyndFeedOutput();
-    return output.outputString(feed);
+    return new SyndFeedOutput().outputString(feed);
 };
