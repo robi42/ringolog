@@ -2,7 +2,7 @@
 
 include('ringo/unittest');
 var http = require('ringo/httpclient');
-var {baseUrl} = require('../app/config');
+var {baseUrl} = require(module.directory + '../app/config');
 
 exports.testAuth = function () {
     http.get(baseUrl + 'login', function (data, status) {
