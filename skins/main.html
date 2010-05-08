@@ -1,15 +1,37 @@
 <% extends ./base.html %>
 
 <% subskin head %>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
     var disqus_developer = 1;
     var disqus_identifier =  <% post._id %> + Date.now() + Math.random();
+
+    $(document).ready(function () {
+        $('#submit').click(function () {
+            if ($('#data').val() === '') {
+                alert('Please provide some content.');
+                return false;
+            }
+            $.post('/update', {id: <% post._id %>, body: $('#data').val()},
+                    function (data) {
+                        $('#main').html(data);
+                        $('.post').effect('highlight', {}, 1500);
+                    }
+            );
+            return false;
+        });
+    });
 //]]>
 </script>
 
 <% subskin content %>
-<% render ./post.html %>
+<% if <% authorized %> render ./menu.html %>
+<% if <% authorized %> render ./form.html %>
+<div id="main">
+  <% render ./post.html %>
+</div>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript" charset="utf-8">

@@ -4,7 +4,8 @@ addToClasspath('./config');
 
 var Post = require('./config').store.defineEntity('Post', {
     properties: {
-        body: {type: 'text'},
-        created: {type: 'timestamp'}
+        body: {type: 'text', nullable: false},
+        created: {type: 'timestamp', nullable: false},
+        modified: {type: 'timestamp'}
     }
 });

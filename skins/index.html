@@ -30,7 +30,7 @@
 
 <% subskin content %>
 <% render ./menu.html %>
-<% if <% authorized %> render form %>
+<% if <% authorized %> render ./form.html %>
 
 <div id="posts">
   <% for post in <% posts %> render ./post.html %>
@@ -41,14 +41,3 @@
 
 <% subskin moreLink %>
 <a href="#" id="more">More &darr;<a/>
-
-<% subskin form %>
-<div id="form">
-  <p><textarea id="data" rows="8" cols="40"></textarea></p>
-  <p>
-    <button type="submit" id="submit">Create &rarr;</button> |
-    <a href="http://kreatives-chaos.com/markdown_help.html" target="_blank">
-      <small>Markdown?</small>
-    </a>
-  </p>
-</div>

@@ -4,7 +4,10 @@ var {createFeed} = require('./feed');
 
 exports.index = function (req, id) {
     if (id && id.match(/[1-9][0-9]*/)) {
-        return skinResponse('skins/main.html', {post: Post.get(id)});
+        return skinResponse('skins/main.html', {
+            authorized: req.session.data.authorized,
+            post: Post.get(id)
+        });
     }
     req.session.data.postsRangeFrom = 0;
     req.session.data.postsRangeTo = 2;
@@ -14,7 +17,8 @@ exports.index = function (req, id) {
                 orderBy('created desc').
                 range(req.session.data.postsRangeFrom,
                         req.session.data.postsRangeTo).
-                select()
+                select(),
+        showLinks: true
     });
 };
 
@@ -24,7 +28,18 @@ exports.create = function (req) {
         newPost.save();
         req.session.data.postsRangeFrom++;
         req.session.data.postsRangeTo++;
-        return skinResponse('skins/post.html', {post: newPost, ajax: true});
+        return skinResponse('skins/post.html', {post: newPost});
+    }
+    return redirectResponse('/');
+};
+
+exports.update = function (req) {
+    if (req.session.data.authorized && req.isXhr && req.isPost) {
+        var post = Post.get(parseInt(req.params.id));
+        post.body = req.params.body;
+        post.modified = new Date();
+        post.save();
+        return skinResponse('skins/post.html', {post: post});
     }
     return redirectResponse('/');
 };
@@ -38,7 +53,8 @@ exports.more = function (req) {
                     orderBy('created desc').
                     range(req.session.data.postsRangeFrom,
                             req.session.data.postsRangeTo).
-                    select()
+                    select(),
+            showLinks: true
         });
     }
     return redirectResponse('/');
