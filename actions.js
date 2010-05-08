@@ -24,8 +24,7 @@ exports.index = function (req, id) {
 
 exports.create = function (req) {
     if (req.session.data.authorized && req.isXhr && req.isPost) {
-        var newPost = new Post({body: req.params.body, created: new Date()});
-        newPost.save();
+        var newPost = Post.create({body: req.params.body});
         req.session.data.postsRangeFrom++;
         req.session.data.postsRangeTo++;
         return skinResponse('skins/post.html', {post: newPost});
@@ -35,11 +34,11 @@ exports.create = function (req) {
 
 exports.update = function (req) {
     if (req.session.data.authorized && req.isXhr && req.isPost) {
-        var post = Post.get(req.params.id);
-        post.body = req.params.body;
-        post.modified = new Date();
-        post.save();
-        return skinResponse('skins/post.html', {post: post});
+        var updatedPost = Post.update({
+            id: req.params.id,
+            body: req.params.body
+        });
+        return skinResponse('skins/post.html', {post: updatedPost});
     }
     return redirectResponse('/');
 };
