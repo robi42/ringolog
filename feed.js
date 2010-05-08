@@ -6,7 +6,7 @@ var {SyndFeedImpl, SyndEntryImpl, SyndContentImpl} =
 var {SyndFeedOutput} = com.sun.syndication.io;
 
 exports.createFeed = function (type) {
-    var posts = Post.query().limit(5).orderBy('created desc').select();
+    var posts = Post.query().orderBy('created desc').limit(5).select();
     var output, entryContent, entry,
         entries = new java.util.ArrayList(),
         feed = new SyndFeedImpl();
