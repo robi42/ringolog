@@ -24,6 +24,7 @@ exports.testModel = function () {
     assertEqual(FOO, post.body);
     assertEqual(FOO_HTML, post.markdown); // Test markdown helper.
     assertTrue(post.created instanceof Date);
+    assertFalse(post.modified instanceof Date);
     post = Post.update({id: 1, body: BAR}); // Test updating helper.
     assertTrue(post instanceof Storable);
     post = Post.all()[0];
