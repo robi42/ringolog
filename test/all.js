@@ -9,6 +9,7 @@ var {baseUrl} = require(module.directory + '../app/config');
 const FOO = '**foo**';
 const FOO_HTML = (new Markdown).process(FOO);
 const BAR = '*bar*';
+const BAR_HTML = (new Markdown).process(BAR);
 
 exports.testAuth = function () {
     http.get(baseUrl + 'login', function (data, status) {
@@ -30,6 +31,7 @@ exports.testModel = function () {
     post = Post.all()[0];
     assertNotNull(post);
     assertEqual(BAR, post.body);
+    assertEqual(BAR_HTML, post.markdown);
     assertTrue(post.modified instanceof Date);
 };
 
