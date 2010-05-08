@@ -1,6 +1,7 @@
 export('Post');
 module.shared = true;
 addToClasspath('./config');
+include('ringo/markdown');
 
 var Post = require('./config').store.defineEntity('Post', {
     properties: {
@@ -26,3 +27,7 @@ Post.update = function (data) {
     post.save();
     return post;
 };
+
+Object.defineProperty(Post.prototype, 'markdown', {
+    get: function () new Markdown().process(this.body)
+});

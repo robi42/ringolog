@@ -1,6 +1,5 @@
 var {Post} = require('./model');
 var {baseUrl} = require('./config');
-var {Markdown} = require('ringo/markdown');
 var {SyndFeedImpl, SyndEntryImpl, SyndContentImpl} =
         com.sun.syndication.feed.synd;
 var {SyndFeedOutput} = com.sun.syndication.io;
@@ -21,7 +20,7 @@ exports.createFeed = function (type) {
        entry.publishedDate = new java.util.Date(post.created.getTime());
        entryContent = new SyndContentImpl();
        entryContent.type = 'text/html';
-       entryContent.value = new Markdown().process(post.body);
+       entryContent.value = post.markdown;
        entry.description = entryContent;
        entries.add(entry);
     }
