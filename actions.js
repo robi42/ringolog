@@ -1,6 +1,6 @@
 include('ringo/webapp/response');
 var {Post} = require('./model');
-var {createFeed} = require('./feeds');
+var {createFeed} = require('./feed');
 
 exports.index = function (req, id) {
     if (id && id.match(/[1-9][0-9]*/)) {
