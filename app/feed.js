@@ -25,5 +25,5 @@ exports.createFeed = function (type) {
        entries.add(entry);
     }
     feed.entries = entries;
-    return new SyndFeedOutput().outputString(feed);
+    return (new SyndFeedOutput).outputString(feed);
 };

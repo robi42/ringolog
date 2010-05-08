@@ -29,5 +29,5 @@ Post.update = function (data) {
 };
 
 Object.defineProperty(Post.prototype, 'markdown', {
-    get: function () new Markdown().process(this.body)
+    get: function () (new Markdown).process(this.body)
 });
