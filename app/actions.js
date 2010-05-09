@@ -17,8 +17,7 @@ exports.index = function (req, id) {
                 orderBy('created desc').
                 range(req.session.data.postsRangeFrom,
                         req.session.data.postsRangeTo).
-                select(),
-        showLinks: true
+                select()
     });
 };
 
@@ -27,7 +26,10 @@ exports.create = function (req) {
         var newPost = Post.create({body: req.params.body});
         req.session.data.postsRangeFrom++;
         req.session.data.postsRangeTo++;
-        return skinResponse('skins/post.html', {post: newPost});
+        return skinResponse('skins/post.html', {
+            authorized: req.session.data.authorized,
+            post: newPost
+        });
     }
     return redirectResponse('/');
 };
@@ -48,12 +50,12 @@ exports.more = function (req) {
         req.session.data.postsRangeFrom += 3;
         req.session.data.postsRangeTo += 3;
         return skinResponse('skins/more.html', {
+            authorized: req.session.data.authorized,
             posts: Post.query().
                     orderBy('created desc').
                     range(req.session.data.postsRangeFrom,
                             req.session.data.postsRangeTo).
-                    select(),
-            showLinks: true
+                    select()
         });
     }
     return redirectResponse('/');
