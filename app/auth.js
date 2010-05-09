@@ -12,7 +12,8 @@ exports.middleware = function (app) {
             if (env.HTTP_AUTHORIZATION) { // Extract credentials from HTTP.
                 var credentials = base64.decode(env.HTTP_AUTHORIZATION.
                         replace(/Basic /, '')).split(':');
-                if (credentials[1].digest('sha1') === toAuth[credentials[0]]) {
+                if (credentials[1].digest('sha1') ===
+                        toAuth[credentials[0]]) {
                     return app(env); // Authorization.
                 }
             }
