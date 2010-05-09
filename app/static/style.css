@@ -16,11 +16,12 @@ body, textarea {
 
 #menu {
     float: right;
+    padding: .3em;
 }
 
 .post {
     margin-bottom: 1.5em;
-    padding: 0.1em 1em 1em 1em;
+    padding: .1em 1em 1em 1em;
     background-color: #eee;
 }
 
