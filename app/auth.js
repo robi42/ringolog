@@ -1,6 +1,6 @@
 require('core/string');
 var base64 = require('ringo/base64');
-var {auth} = require('./config');
+var {auth} = require('config');
 
 module.shared = true;
 
