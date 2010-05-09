@@ -14,7 +14,6 @@
 <body onload="sh_highlightDocument();">
 <% render header %>
   <div id="content">
-    <h1><a href="/">Ringolog</a></h1>
     <% render content %>
   </div>
 <% render footer %>
@@ -23,3 +22,15 @@
 
 <% subskin content %>
 Overwrite this subskin to add content.
+
+<% subskin header %>
+<div id="header">
+  <h1><a href="/">Ringolog</a></h1>
+</div>
+
+<% subskin footer %>
+<div id="footer">
+  <small>
+    <strong>Powered by <a href="http://ringojs.org/">RingoJS</a></strong>
+  </small>
+</div>

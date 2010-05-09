@@ -13,6 +13,7 @@
             }
             $.post('/create', {body: $('#data').val()}, function (data) {
                 $('#posts .post').first().before(data);
+                sh_highlightDocument();
                 $('#posts .post').first().effect('highlight', {}, 1500);
                 $('#data').val('');
             });
@@ -21,6 +22,7 @@
         $('#more').click(function () {
             $.get('/more', function (data) {
                 $('#dummy').before(data);
+                sh_highlightDocument();
             });
             return false;
         });
@@ -40,4 +42,4 @@
 <% if <% posts.length %> render moreLink %>
 
 <% subskin moreLink %>
-<a href="#" id="more">More &darr;<a/>
+<a href="#" id="more">More &darr;</a>

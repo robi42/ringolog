@@ -9,7 +9,7 @@ body, textarea {
     line-height: 160%;
 }
 
-#content {
+#header, #content, #footer {
     margin: 0 auto;
     width: 600px;
 }
@@ -28,6 +28,12 @@ body, textarea {
 #dummy {
     background-color: #fff;
     display: none;
+}
+
+#footer {
+    margin: 1em auto;
+    border-top: 1px dotted;
+    text-align: center;
 }
 
 textarea {

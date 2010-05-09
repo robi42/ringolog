@@ -17,6 +17,7 @@
             $.post('/update', {id: <% post._id %>, body: $('#data').val()},
                     function (data) {
                         $('#main').html(data);
+                        sh_highlightDocument();
                         $('.post').effect('highlight', {}, 1500);
                     }
             );
