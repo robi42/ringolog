@@ -32,7 +32,7 @@ body, textarea {
 
 #footer {
     margin: 1em auto;
-    border-top: 1px dotted;
+    border-top: 1px dotted grey;
     text-align: center;
 }
 
