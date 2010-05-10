@@ -3,7 +3,9 @@ var {Post} = require('./model');
 var {createFeed} = require('./feed');
 
 exports.index = function (req, id) {
-    if (id && /^[1-9][0-9]*$/.test(id)) {
+    if (id && !/^[1-9][0-9]*$/.test(id)) {
+        return notFoundResponse(req.path);
+    } else if (id) {
         return skinResponse('skins/main.html', {
             authorized: req.session.data.authorized,
             post: Post.get(id)
