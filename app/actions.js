@@ -2,15 +2,7 @@ include('ringo/webapp/response');
 var {Post} = require('./model');
 var {createFeed} = require('./feed');
 
-exports.index = function (req, id) {
-    if (id && !/^[1-9][0-9]*$/.test(id)) {
-        return notFoundResponse(req.path);
-    } else if (id) {
-        return skinResponse('skins/main.html', {
-            authorized: req.session.data.authorized,
-            post: Post.get(id)
-        });
-    }
+exports.index = function (req) {
     req.session.data.postsRangeFrom = 0;
     req.session.data.postsRangeTo = 2;
     return skinResponse('skins/index.html', {
@@ -20,6 +12,16 @@ exports.index = function (req, id) {
                 range(req.session.data.postsRangeFrom,
                         req.session.data.postsRangeTo).
                 select()
+    });
+};
+
+exports.main = function (req, id) {
+    if (!/^[1-9][0-9]*$/.test(id)) {
+        return notFoundResponse(req.path);
+    }
+    return skinResponse('skins/main.html', {
+        authorized: req.session.data.authorized,
+        post: Post.get(id)
     });
 };
 

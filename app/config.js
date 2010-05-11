@@ -3,7 +3,8 @@ exports.httpConfig = {
 };
 
 exports.urls = [
-    ['/', './actions']
+    ['/', './actions'],
+    ['/(.*)', './actions', 'main']
 ];
 
 exports.middleware = [
