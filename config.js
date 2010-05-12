@@ -7,12 +7,12 @@ exports.urls = [
 ];
 
 exports.middleware = [
+    'ringo/middleware/basicauth',
     'ringo/middleware/etag',
     'ringo/middleware/responselog',
     'ringo/middleware/error',
     'ringo/middleware/notfound',
-    // 'ringo/middleware/profiler',
-    'auth'
+    // 'ringo/middleware/profiler'
 ];
 
 exports.app = require('ringo/webapp').handleRequest;
