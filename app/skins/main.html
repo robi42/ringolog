@@ -9,6 +9,7 @@
     var disqus_identifier =  <% post._id %> + Date.now() + Math.random();
 
     $(document).ready(function () {
+        $('.wmd-preview').empty();
         $('#submit').click(function () {
             if ($('#data').val() === '') {
                 alert('Please provide some content.');
@@ -18,7 +19,8 @@
                     function (data) {
                         $('#main').html(data);
                         sh_highlightDocument();
-                        $('.post').effect('highlight', {}, 1500);
+                        $('.wmd-preview').empty();
+                        $('.post').last().effect('highlight', {}, 1500);
                     }
             );
             return false;

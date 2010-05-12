@@ -14,6 +14,7 @@
             $.post('/create', {body: $('#data').val()}, function (data) {
                 $('#posts .post').first().before(data);
                 sh_highlightDocument();
+                $('.wmd-preview').empty();
                 $('#posts .post').first().effect('highlight', {}, 1500);
                 $('#data').val('');
             });
