@@ -41,6 +41,10 @@ textarea {
     height: 15em;
 }
 
+blockquote {
+    font-style: italic;
+}
+
 a {
     color: blue;
     text-decoration: none;
