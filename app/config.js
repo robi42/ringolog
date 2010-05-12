@@ -8,7 +8,7 @@ exports.urls = [
 ];
 
 exports.middleware = [
-    'auth',
+    'ringo/middleware/basicauth',
     'ringo/middleware/etag',
     'ringo/middleware/responselog',
     'ringo/middleware/error',
