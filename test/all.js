@@ -6,15 +6,27 @@ include('ringo/markdown');
 var http = require('ringo/httpclient');
 include(module.directory + '../app/model');
 var {baseUrl} = require(module.directory + '../app/config');
+const LOGIN_URL = baseUrl + 'login';
 const FOO = '**foo**';
 const FOO_HTML = (new Markdown).process(FOO);
 const BAR = '*bar*';
 const BAR_HTML = (new Markdown).process(BAR);
 
 exports.testAuth = function () {
-    http.get(baseUrl + 'login', function (data, status) {
+    http.get(LOGIN_URL, function (data, status) {
         assertMatch(/Unauthorized/, data);
         assertEqual(401, status);
+    });
+    http.request({
+        url: LOGIN_URL,
+        username: 'admin',
+        password: 'secret',
+        success: function (data, status) {
+            assertEqual(303, status); // If authorized successfully, redirect.
+        },
+        error: function (data) {
+            assertTrue(false);
+        }
     });
 };
 
