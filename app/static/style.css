@@ -25,6 +25,10 @@ body, textarea {
     background-color: #eee;
 }
 
+#preview {
+    border: 1px dotted grey;
+}
+
 #dummy {
     background-color: #fff;
     display: none;
