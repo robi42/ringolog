@@ -16,9 +16,27 @@ body, textarea {
     float: left;
 }
 
+#header h1 {
+    font-family: 'Trebuchet MS', 'Times New Roman', serif;
+}
+
 #menu {
     float: right;
     margin: 1.5em .5em 0 0;
+}
+
+#menu a, #more {
+    padding: .3em;
+}
+
+#menu a:hover, #more:hover {
+    background-color: blue;
+    color: #fff;
+}
+
+#menu a:active, #more:active {
+    background-color: dodgerblue;
+    color: darkorange;
 }
 
 .post {
