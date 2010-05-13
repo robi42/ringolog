@@ -30,6 +30,8 @@ exports.auth = {
 
 exports.baseUrl = 'http://localhost:8080/'; // Used by feeds and tests.
 
+exports.authorName = 'Ringo User'; // Used by feeds.
+
 exports.jars = [
     'jars/mysql-connector-java-5.1.12-bin.jar',
     'jars/jdom-1.1.1.jar',

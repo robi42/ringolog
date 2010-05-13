@@ -1,5 +1,5 @@
 var {Post} = require('./model');
-var {baseUrl} = require('./config');
+var {baseUrl, authorName} = require('./config');
 var {SyndFeedImpl, SyndEntryImpl, SyndContentImpl} =
         com.sun.syndication.feed.synd;
 var {SyndFeedOutput} = com.sun.syndication.io;
@@ -12,11 +12,13 @@ exports.createFeed = function (type) {
     feed.feedType = type;
     feed.title = 'Ringolog Posts';
     feed.link = baseUrl;
-    feed.description = 'Powered by RingoJS, Hibernate and ROME.';
+    feed.description = 'Powered by RingoJS';
+    feed.author = authorName;
     for each (let post in posts) {
        entry = new SyndEntryImpl();
        entry.title = 'Post #' + post._id;
        entry.link = baseUrl + post._id;
+       entry.author = authorName;
        entry.publishedDate = new java.util.Date(post.created.getTime());
        entryContent = new SyndContentImpl();
        entryContent.type = 'text/html';
