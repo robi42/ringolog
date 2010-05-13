@@ -1,6 +1,6 @@
 <div class="post">
   <% post.body | markdown %>
-  <small>
+  <small class="caption">
     <% post.created | dateFormat "h:mm a',' EEEE',' MMM d',' ''yy" %>
     <strong>|</strong> <a href="/<% post._id %>#disqus_thread" class="comments">Comments</a>
     <% if <% authorized %> render edit %>

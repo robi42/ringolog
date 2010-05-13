@@ -55,6 +55,10 @@ body, textarea {
     overflow: auto;
 }
 
+.caption {
+    float: right;
+}
+
 #preview {
     border: 1px dotted grey;
 }
