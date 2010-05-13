@@ -20,6 +20,9 @@ body, textarea {
 }
 
 .post {
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
     margin-bottom: 1.5em;
     padding: .1em 1em 1em 1em;
     background-color: #eee;
