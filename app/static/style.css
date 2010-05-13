@@ -26,6 +26,9 @@ body, textarea {
 }
 
 #menu a, #more {
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
     padding: .3em;
 }
 
