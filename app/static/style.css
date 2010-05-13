@@ -12,6 +12,7 @@ body, textarea {
 #header, #content, #footer {
     margin-left: 15%;
     width: 60%;
+    max-width: 600px;
     float: left;
 }
 
