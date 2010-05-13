@@ -47,6 +47,10 @@ body, textarea {
     text-align: center;
 }
 
+#form a {
+    float: right;
+}
+
 textarea {
     width: 99%;
     height: 15em;
