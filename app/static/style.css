@@ -25,19 +25,19 @@ body, textarea {
     margin: 1.5em .5em 0 0;
 }
 
-#menu a, #more, .comments {
+#menu a, #more, .comments, .edit {
     border-radius: .3em;
     -webkit-border-radius: .3em;
     -moz-border-radius: .3em;
     padding: .3em;
 }
 
-#menu a:hover, #more:hover, .comments:hover {
+#menu a:hover, #more:hover, .comments:hover, .edit:hover {
     background-color: blue;
     color: #fff;
 }
 
-#menu a:active, #more:active, .comments:active {
+#menu a:active, #more:active, .comments:active, .edit:active {
     background-color: dodgerblue;
     color: darkorange;
 }
