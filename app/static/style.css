@@ -68,6 +68,13 @@ body, textarea {
     display: none;
 }
 
+#pagination a {
+    display: block;
+    width: 98.5%;
+    text-align: center;
+    border: 1px dotted dodgerblue;
+}
+
 #footer {
     margin: 1em 0 0 15%;
     padding-bottom: 1em;
