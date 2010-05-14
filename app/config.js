@@ -4,7 +4,7 @@ exports.httpConfig = {
 
 exports.urls = [
     ['/', './actions'],
-    ['/(.*)', './actions', 'main']
+    ['/([1-9][0-9]*)', './actions', 'main']
 ];
 
 exports.middleware = [

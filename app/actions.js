@@ -12,12 +12,11 @@ exports.index = function (req) {
 };
 
 exports.main = function (req, id) {
-    if (!/^[1-9][0-9]*$/.test(id)) {
-        return notFoundResponse(req.path);
-    }
-    return skinResponse('skins/main.html', {
-        authorized: req.session.data.authorized,
-        post: Post.get(id)
+    var post = Post.get(id);
+    return !post ? notFoundResponse(req.path) :
+            skinResponse('skins/main.html', {
+                authorized: req.session.data.authorized,
+                post: post
     });
 };
 
