@@ -1,4 +1,4 @@
-export('Post');
+export('Post', 'queryPosts');
 module.shared = true;
 addToClasspath('./config');
 include('ringo/markdown');
@@ -32,3 +32,8 @@ Object.defineProperty(Post.prototype, 'markdown', {
     get: function () (new Markdown).process(this.body),
     configurable: true
 });
+
+function queryPosts(data) {
+    return Post.query().orderBy('created desc').
+            range(data.postsRangeFrom, data.postsRangeTo);
+}

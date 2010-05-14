@@ -1,5 +1,5 @@
 include('ringo/webapp/response');
-var {Post} = require('./model');
+var {Post, queryPosts} = require('./model');
 var {createFeed} = require('./feed');
 
 exports.index = function (req) {
@@ -7,11 +7,7 @@ exports.index = function (req) {
     req.session.data.postsRangeTo = 2;
     return skinResponse('skins/index.html', {
         authorized: req.session.data.authorized,
-        posts: Post.query().
-                orderBy('created desc').
-                range(req.session.data.postsRangeFrom,
-                        req.session.data.postsRangeTo).
-                select()
+        posts: queryPosts(req.session.data).select()
     });
 };
 
@@ -55,11 +51,7 @@ exports.more = function (req) {
         req.session.data.postsRangeTo += 3;
         return skinResponse('skins/more.html', {
             authorized: req.session.data.authorized,
-            posts: Post.query().
-                    orderBy('created desc').
-                    range(req.session.data.postsRangeFrom,
-                            req.session.data.postsRangeTo).
-                    select()
+            posts: queryPosts(req.session.data).select()
         });
     }
     return redirectResponse('/');
