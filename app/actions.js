@@ -13,7 +13,7 @@ exports.index = function (req) {
 
 exports.main = function (req, id) {
     var requestedPost = Post.get(id);
-    return !post ? notFoundResponse(req.path) :
+    return !requestedPost ? notFoundResponse(req.path) :
             skinResponse('skins/main.html', {
                 authorized: req.session.data.authorized,
                 post: requestedPost
