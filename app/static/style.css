@@ -72,7 +72,7 @@ body, textarea {
     display: block;
     width: 98.5%;
     text-align: center;
-    border: 1px dotted dodgerblue;
+    border: 1px solid dodgerblue;
 }
 
 #footer {
