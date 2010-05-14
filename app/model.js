@@ -33,7 +33,7 @@ Object.defineProperty(Post.prototype, 'markdown', {
     configurable: true
 });
 
-function queryPosts(data) {
+function queryPosts(criteria) {
     return Post.query().orderBy('created desc').
-            range(data.postsRangeFrom, data.postsRangeTo);
+            range(criteria.postsRangeFrom, criteria.postsRangeTo);
 }
