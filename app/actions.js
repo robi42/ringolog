@@ -12,11 +12,11 @@ exports.index = function (req) {
 };
 
 exports.main = function (req, id) {
-    var post = Post.get(id);
+    var requestedPost = Post.get(id);
     return !post ? notFoundResponse(req.path) :
             skinResponse('skins/main.html', {
                 authorized: req.session.data.authorized,
-                post: post
+                post: requestedPost
     });
 };
 
