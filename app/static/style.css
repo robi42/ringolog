@@ -16,11 +16,8 @@ body, textarea {
     float: left;
 }
 
-#header h1 {
-    font-family: 'Trebuchet MS', 'Times New Roman', serif;
-}
-
 h1, h2, h3 {
+    font-family: 'Trebuchet MS', 'Times New Roman', serif;
     letter-spacing: 1px;
 }
 
