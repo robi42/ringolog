@@ -4,7 +4,7 @@ var {createFeed} = require('./feed');
 
 exports.index = function (req) {
     req.session.data.postsRangeFrom = 0;
-    req.session.data.postsRangeTo = 2;
+    req.session.data.postsRangeTo = 4;
     return skinResponse('skins/index.html', {
         authorized: req.session.data.authorized,
         posts: queryPosts(req.session.data).select()
@@ -46,8 +46,8 @@ exports.update = function (req) {
 
 exports.more = function (req) {
     if (req.isXhr) {
-        req.session.data.postsRangeFrom += 3;
-        req.session.data.postsRangeTo += 3;
+        req.session.data.postsRangeFrom += 5;
+        req.session.data.postsRangeTo += 5;
         return skinResponse('skins/more.html', {
             authorized: req.session.data.authorized,
             posts: queryPosts(req.session.data).select()
