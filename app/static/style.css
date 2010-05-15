@@ -105,6 +105,10 @@ textarea {
     height: 15em;
 }
 
+textarea:hover, textarea:focus {
+    border: 1px solid #000;
+}
+
 blockquote {
     font-style: italic;
 }
