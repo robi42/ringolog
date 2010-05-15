@@ -3,8 +3,8 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 <title>Ringolog<% post._id | prefix " - Post #" %></title>
-<link rel="alternate" type="application/atom+xml" title="Posts Feed (Atom)" href="/feed"/>
-<link rel="alternate" type="application/rss+xml" title="Posts Feed (RSS)" href="/feed/rss"/>
+<link rel="alternate" type="application/atom+xml" title="Posts (Atom)" href="/feed"/>
+<link rel="alternate" type="application/rss+xml" title="Posts (RSS)" href="/feed/rss"/>
 <link rel="stylesheet" href="/static/style.css"/>
 <link rel="stylesheet" href="/static/sh_hns.min.css"/>
 <script type="text/javascript" src="/static/sh_main.min.js"></script>
@@ -15,6 +15,16 @@
 <% render header %>
   <div id="content">
     <% render content %>
+  </div>
+  <div id="sidebar">
+    <div id="recentcomments" class="dsq-widget">
+      <h2 class="dsq-widget-title">
+        Recent Comments
+        <a href="http://ringolog.disqus.com/latest.rss" title="Subscribe">
+          <img src="/static/feed-icon-14x14.png" alt="Feed"/>
+        </a>
+      </h2>
+      <script type="text/javascript" src="http://disqus.com/forums/ringolog/recent_comments_widget.js?num_items=3&hide_avatars=0&avatar_size=24&excerpt_length=50"></script></div>
   </div>
 <% render footer %>
 </body>
@@ -28,7 +38,12 @@ Overwrite this subskin to add content.
 
 <div id="header">
   <% render ./menu.html %>
-  <h1><a href="/" title="Home">Ringolog</a></h1>
+  <h1>
+    <a href="/" title="Home">Ringolog</a>
+    <a href="/feed" title="Subscribe">
+      <img src="/static/feed-icon-16x16.png" alt="Feed"/>
+    </a>
+  </h1>
 </div>
 
 <% subskin footer %>
