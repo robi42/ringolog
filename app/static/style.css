@@ -109,6 +109,10 @@ blockquote {
     font-style: italic;
 }
 
+img {
+    border: 0;
+}
+
 a {
     color: blue;
     text-decoration: none;
