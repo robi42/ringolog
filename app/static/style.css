@@ -61,6 +61,12 @@ h1, h2, h3 {
     overflow: auto;
 }
 
+.post img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .caption {
     float: right;
 }
