@@ -14,7 +14,7 @@ body, textarea {
     line-height: 160%;
 }
 
-#header, #content, #footer {
+#column {
     margin-left: 15%;
     width: 60%;
     max-width: 600px;
@@ -28,7 +28,7 @@ h1, h2, h3 {
 
 #menu {
     float: right;
-    margin: 1.5em .5em 0 0;
+    margin: 1em .5em 0 0;
 }
 
 #menu a, #more, .comments, .edit {
@@ -82,7 +82,7 @@ h1, h2, h3 {
 }
 
 #footer {
-    margin: 1em 0 0 15%;
+    margin-top: 1em;
     padding-bottom: 1em;
     border-top: 1px dotted grey;
     text-align: center;
