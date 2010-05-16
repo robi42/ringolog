@@ -14,7 +14,7 @@ const BAR_HTML = (new Markdown).process(BAR);
 
 exports.testAuth = function () {
     http.get(LOGIN_URL, function (data, status) {
-        assertMatch(/Unauthorized/, data);
+        assertMatch(data, /Unauthorized/);
         assertEqual(401, status);
     });
     http.request({
@@ -22,6 +22,7 @@ exports.testAuth = function () {
         username: 'admin',
         password: 'secret',
         success: function (data, status) {
+            assertMatch(data, /See other/);
             assertEqual(303, status); // If authorized successfully, redirect.
         },
         error: function (data) {
