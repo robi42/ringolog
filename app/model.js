@@ -1,5 +1,4 @@
 export('Post', 'queryPosts');
-module.shared = true;
 addToClasspath('./config');
 include('ringo/markdown');
 
