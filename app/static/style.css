@@ -140,6 +140,10 @@ a:active {
     color: darkorange;
 }
 
+#header img {
+    vertical-align: middle;
+}
+
 #header h1 a:hover {
     color: blue;
 }
