@@ -48,7 +48,7 @@ exports.testModel = function () {
     assertTrue(post.modified instanceof Date);
 };
 
-if (require.main == module.id) {
+if (require.main == module) {
     require('ringo/webapp').main(module.directory + '../app');
     require('ringo/unittest').run(exports);
     require('ringo/shell').quit();

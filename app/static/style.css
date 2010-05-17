@@ -26,6 +26,10 @@ h1, h2, h3 {
     letter-spacing: .05em;
 }
 
+#header h1 {
+    font-size: 300%;
+}
+
 #menu {
     float: right;
     margin: 1em .5em 0 0;
