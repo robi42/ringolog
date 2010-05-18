@@ -24,7 +24,6 @@
             $.get('/more', function (data) {
                 if (!data) {
                     alert('Nothing to see here, move along.');
-                    return false;
                 }
                 $('#dummy').before(data);
                 sh_highlightDocument();
