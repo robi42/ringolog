@@ -13,7 +13,7 @@
 </head>
 <body onload="sh_highlightDocument();">
   <div id="column">
-    <a href="http://github.com/robi42/ringolog/tree/hibernate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub" /></a>
+    <a href="http://github.com/robi42/ringolog/tree/hibernate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"/></a>
     <div id="header">
       <% render header %>
     </div>
@@ -32,7 +32,7 @@
           <img src="/static/feed-icon-14x14.png" alt="Feed"/>
         </a>
       </h2>
-      <script type="text/javascript" src="http://disqus.com/forums/ringolog/recent_comments_widget.js?num_items=5&hide_avatars=0&avatar_size=24&excerpt_length=70"></script>
+      <script type="text/javascript" src="http://disqus.com/forums/ringolog/recent_comments_widget.js?num_items=5&amp;hide_avatars=0&amp;avatar_size=24&amp;excerpt_length=70"></script>
     </div>
   </div>
 </body>
@@ -66,7 +66,7 @@ Overwrite this subskin to add content.
         for (var i = 0; i < links.length; i++) {
             if (links[i].href.indexOf('#disqus_thread') >= 0) {
                 query += 'url' + i + '=' +
-                        encodeURIComponent(links[i].href) + '&';
+                        encodeURIComponent(links[i].href) + '&amp;';
             }
         }
         document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/ringolog/get_num_replies.js' + query + '"></' + 'script>');
