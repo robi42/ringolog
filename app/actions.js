@@ -1,15 +1,31 @@
 include('ringo/webapp/response');
-var {Post, queryPosts} = require('./model');
+var {Post, queryPosts, months} = require('./model');
 var {createFeed} = require('./feed');
 
 exports.index = function (req) {
+    req.session.data.archiveYear = null;
+    req.session.data.archiveMonth = null;
+    return indexView(req);
+};
+
+exports.archive = function (req, year, month) {
+    if (!/^2\d{3}$/.test(year) || /^2\d{3}$/.test(year) &&
+            month && months.indexOf(month.toLowerCase()) == -1) {
+        return notFoundResponse(req.path);
+    }
+    req.session.data.archiveYear = year;
+    req.session.data.archiveMonth = month || null;
+    return indexView(req);
+};
+
+function indexView(req) {
     req.session.data.postsRangeFrom = 0;
     req.session.data.postsRangeTo = 4;
     return skinResponse('skins/index.html', {
         authorized: req.session.data.authorized,
         posts: queryPosts(req.session.data).select()
     });
-};
+}
 
 exports.main = function (req, id) {
     var requestedPost = Post.get(id);

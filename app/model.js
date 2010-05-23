@@ -1,6 +1,11 @@
-export('Post', 'queryPosts');
+export('Post', 'queryPosts', 'months');
 addToClasspath('./config');
 include('ringo/markdown');
+
+var months = [
+    'january', 'february', 'march', 'april', 'may', 'june', 'july',
+    'august', 'september', 'october', 'november', 'december'
+];
 
 var Post = require('./config').store.defineEntity('Post', {
     properties: {
@@ -33,6 +38,21 @@ Object.defineProperty(Post.prototype, 'markdown', {
 });
 
 function queryPosts(criteria) {
-    return Post.query().orderBy('created desc').
+    var query = Post.query().
+            orderBy('created desc').
             range(criteria.postsRangeFrom, criteria.postsRangeTo);
+    if (criteria.archiveMonth) {
+        var month = criteria.archiveMonth.toLowerCase();
+        return query.
+                greaterEquals('created', new Date(criteria.archiveYear,
+                        months.indexOf(month), 1)).
+                less('created', new Date(criteria.archiveYear,
+                        months.indexOf(month) + 1, 1));
+    }
+    if (criteria.archiveYear) {
+        return query.
+                greaterEquals('created', new Date(criteria.archiveYear, 0, 1)).
+                less('created', new Date(criteria.archiveYear + 1, 0, 1));
+    }
+    return query;
 }

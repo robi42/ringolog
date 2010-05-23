@@ -7,8 +7,21 @@
 <link rel="alternate" type="application/rss+xml" title="Posts (RSS)" href="/feed/rss"/>
 <link rel="stylesheet" href="/static/style.css"/>
 <link rel="stylesheet" href="/static/sh_hns.min.css"/>
+<link rel="stylesheet" href="http://dev.jquery.com/view/trunk/plugins/treeview/jquery.treeview.css"/>
 <script type="text/javascript" src="/static/sh_main.min.js"></script>
 <script type="text/javascript" src="/static/sh_javascript.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://dev.jquery.com/view/trunk/plugins/treeview/jquery.treeview.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+    $(document).ready(function () {
+        $('#years').treeview({
+            persist: 'location'
+        });
+    });
+//]]>
+</script>
 <% render head %>
 </head>
 <body onload="sh_highlightDocument();">
@@ -25,6 +38,7 @@
     </div>
   </div>
   <div id="sidebar">
+    <% archive %>
     <div id="recentcomments" class="dsq-widget">
       <h2 class="dsq-widget-title">
         Latest Comments

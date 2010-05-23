@@ -1,8 +1,6 @@
 <% extends ./base.html %>
 
 <% subskin head %>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
     $(document).ready(function () {
@@ -38,11 +36,15 @@
 <% if <% authorized %> render ./form.html %>
 
 <div id="posts">
+  <% if not <% posts.length %> render moveAlong %>
   <% for post in <% posts %> render ./post.html %>
   <div id="dummy" class="post"></div>
 </div>
 
 <% if <% posts.length %> render moreLink %>
+
+<% subskin moveAlong %>
+<strong>Nothing to see here, move along.</strong>
 
 <% subskin moreLink %>
 <div id="pagination">
