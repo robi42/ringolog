@@ -49,6 +49,22 @@
       <script type="text/javascript" src="http://disqus.com/forums/ringolog/recent_comments_widget.js?num_items=5&amp;hide_avatars=0&amp;avatar_size=24&amp;excerpt_length=70"></script>
     </div>
   </div>
+  <script type="text/javascript" src="/static/wmd/wmd.js"></script>
+  <script type="text/javascript">
+  //<![CDATA[
+      (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for (var i = 0; i < links.length; i++) {
+              if (links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' +
+                          encodeURIComponent(links[i].href) + '&amp;';
+              }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/ringolog/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+  //]]>
+  </script>
 </body>
 </html>
 
@@ -70,20 +86,3 @@ Overwrite this subskin to add content.
     Powered by <a href="http://ringojs.org/" target="_blank">RingoJS</a>
   </strong>
 </small>
-
-<script type="text/javascript" src="/static/wmd/wmd.js"></script>
-<script type="text/javascript">
-//<![CDATA[
-    (function() {
-        var links = document.getElementsByTagName('a');
-        var query = '?';
-        for (var i = 0; i < links.length; i++) {
-            if (links[i].href.indexOf('#disqus_thread') >= 0) {
-                query += 'url' + i + '=' +
-                        encodeURIComponent(links[i].href) + '&amp;';
-            }
-        }
-        document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/ringolog/get_num_replies.js' + query + '"></' + 'script>');
-    })();
-//]]>
-</script>
