@@ -2,7 +2,7 @@ export('markdown_filter', 'archive_macro');
 include('ringo/markdown');
 require('core/array');
 var {render} = require('ringo/skin');
-var {Post, months} = require('./model');
+var {Post, months, cache} = require('./model');
 
 function markdown_filter(content) {
     var markdown = new Markdown({
@@ -18,13 +18,17 @@ function markdown_filter(content) {
 }
 
 function archive_macro() {
+    var cached = cache.get('rl_archive_widget');
+    if (cached) {
+        return cached;
+    }
     var years = Post.query().
             orderBy('created desc').
             select().
             map(function (post) post.created.getFullYear()).
             unique();
     if (years.length) {
-        return render('skins/archive.html', {
+        var widget = render('skins/archive.html', {
             years: [{
                 value: year,
                 months: Post.query().
@@ -36,6 +40,8 @@ function archive_macro() {
                         unique()
             } for each (year in years)]
         });
+        cache.set('rl_archive_widget', 14 * 24 * 60 * 60, widget); // 2 weeks.
+        return widget;
     }
 }
 

@@ -34,11 +34,14 @@ exports.authorName = 'Ringo User'; // Used by feeds.
 
 exports.jars = [
     'jars/mysql-connector-java-5.1.12-bin.jar',
+    'jars/memcached-2.5.jar',
     'jars/jdom-1.1.1.jar',
     'jars/rome-1.0.jar'
 ];
 
 exports.store = require('ringo/storage/hibernate');
+
+exports.memcached = {host: 'localhost', port: 11211};
 
 exports.charset = 'UTF-8';
 exports.contentType = 'text/html';

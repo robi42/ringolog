@@ -8,6 +8,10 @@ Initially, create MySQL DB, e.g.:
 
     mysql -uroot < app/config/init-mysql.sql
 
+Start memcached (in a separate shell session), e.g.:
+
+    memcached -vv
+
 Now, to run the app launch ringo with the main script, e.g.:
 
     ringo app/main.js

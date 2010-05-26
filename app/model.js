@@ -1,6 +1,10 @@
-export('Post', 'queryPosts', 'months');
+export('Post', 'queryPosts', 'cache', 'months');
 addToClasspath('./config');
 include('ringo/markdown');
+var {memcached} = require('./config');
+
+var cache = cache || new net.spy.memcached.MemcachedClient(
+        new java.net.InetSocketAddress(memcached.host, memcached.port));
 
 var months = [
     'january', 'february', 'march', 'april', 'may', 'june', 'july',
