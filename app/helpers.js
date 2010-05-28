@@ -2,7 +2,7 @@ export('markdown_filter', 'archive_macro');
 include('ringo/markdown');
 require('core/array');
 var {render} = require('ringo/skin');
-var {Post, months, cache} = require('./model');
+var {Post, cache, months} = require('./model');
 
 function markdown_filter(content) {
     var markdown = new Markdown({
@@ -51,6 +51,6 @@ Object.defineProperty(Array.prototype, 'unique', {
         for each (let item in this) {
             set.add(item);
         }
-        return [item for each (item in set.toArray())];
+        return [item for each (item in Iterator(set))];
     }, writable: true
 });
