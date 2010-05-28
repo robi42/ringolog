@@ -92,10 +92,12 @@ h1, h2, h3 {
 }
 
 #footer {
-    margin-top: 1em;
+    margin-top: 1.5em;
+    padding-top: .5em;
     padding-bottom: 1em;
     border-top: 1px dotted grey;
     text-align: center;
+    opacity: .6;
 }
 
 #sidebar {
