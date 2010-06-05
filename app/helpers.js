@@ -23,7 +23,7 @@ function archive_macro() {
         return cached;
     }
     var years = Post.query().
-            orderBy('created desc').
+            orderBy('-created').
             select().
             map(function (post) post.created.getFullYear()).
             unique();
@@ -32,7 +32,7 @@ function archive_macro() {
             years: [{
                 value: year,
                 months: Post.query().
-                        orderBy('created desc').
+                        orderBy('-created').
                         greaterEquals('created', new Date(year, 0, 1)).
                         less('created', new Date(year + 1, 0, 1)).
                         select().

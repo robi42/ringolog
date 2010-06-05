@@ -43,7 +43,7 @@ Object.defineProperty(Post.prototype, 'markdown', {
 
 function queryPosts(criteria) {
     var query = Post.query().
-            orderBy('created desc').
+            orderBy('-created').
             range(criteria.postsRangeFrom, criteria.postsRangeTo);
     if (criteria.archiveMonth) {
         var month = criteria.archiveMonth.toLowerCase();
