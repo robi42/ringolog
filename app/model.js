@@ -3,8 +3,10 @@ addToClasspath('./config');
 include('ringo/markdown');
 var {memcached} = require('./config');
 
-var cache = cache || new net.spy.memcached.MemcachedClient(
-        new java.net.InetSocketAddress(memcached.host, memcached.port));
+var cache = cache || typeof net.spy.memcached.MemcachedClient === 'function' ?
+        new net.spy.memcached.MemcachedClient(
+                new java.net.InetSocketAddress(memcached.host, memcached.port)
+        ) : null;
 
 var months = [
     'january', 'february', 'march', 'april', 'may', 'june', 'july',

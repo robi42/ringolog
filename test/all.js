@@ -4,7 +4,7 @@ addToClasspath('./config');
 include('ringo/unittest');
 include('ringo/markdown');
 var http = require('ringo/httpclient');
-include(module.directory + '../app/model');
+var {Post} = require(module.directory + '../app/model');
 var {baseUrl} = require(module.directory + '../app/config');
 const LOGIN_URL = baseUrl + 'login';
 const FOO = '**foo**';
@@ -51,5 +51,5 @@ exports.testModel = function () {
 if (require.main == module) {
     require('ringo/webapp').main(module.directory + '../app');
     require('ringo/unittest').run(exports);
-    require('ringo/shell').quit();
+    system.exit(1);
 }
