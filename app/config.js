@@ -3,8 +3,8 @@ exports.httpConfig = {
 };
 
 exports.urls = [
-    ['/', './actions'],
-    ['/([1-9]\\d*)', './actions', 'main']
+    ['', './actions'],
+    ['^/([1-9]\\d*)', './actions', 'main']
 ];
 
 exports.middleware = [
@@ -40,6 +40,8 @@ exports.jars = [
 ];
 
 exports.store = require('ringo/storage/hibernate');
+// var {Store} = require('ringo/storage/mongodbstore');
+// exports.store = exports.store || new Store('localhost', 27017, 'ringolog');
 
 exports.memcached = {host: 'localhost', port: 11211};
 
