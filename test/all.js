@@ -1,9 +1,9 @@
 // Run w/, e.g.: ringo test/all
 
 addToClasspath('./config');
-include('ringo/unittest');
-include('ringo/markdown');
+var assert = require('assert');
 var http = require('ringo/httpclient');
+var {Markdown} = require('ringo/markdown');
 var {Post} = require(module.directory + '../app/model');
 var {baseUrl} = require(module.directory + '../app/config');
 const LOGIN_URL = baseUrl + 'login';
@@ -13,43 +13,37 @@ const BAR = '*bar*';
 const BAR_HTML = (new Markdown).process(BAR);
 
 exports.testAuth = function () {
-    http.get(LOGIN_URL, function (data, status) {
-        assertMatch(data, /Unauthorized/);
-        assertEqual(401, status);
-    });
-    http.request({
+    var res = http.get(LOGIN_URL);
+    assert.matches(res.content, /Unauthorized/);
+    assert.deepEqual(401, res.status);
+    res = http.request({
         url: LOGIN_URL,
         username: 'admin',
-        password: 'secret',
-        success: function (data, status) {
-            assertMatch(data, /See other/);
-            assertEqual(303, status); // If authorized successfully, redirect.
-        },
-        error: function (data) {
-            assertTrue(false);
-        }
+        password: 'secret'
     });
+    assert.matches(res.content, /See other/);
+    assert.deepEqual(303, res.status);
 };
 
 exports.testModel = function () {
     var post = Post.create({body: FOO}); // Test creation helper.
     post = Post.get(1);
-    assertTrue(post instanceof Post);
-    assertEqual(FOO, post.body);
-    assertEqual(FOO_HTML, post.markdown); // Test markdown helper.
-    assertTrue(post.created instanceof Date);
-    assertFalse(post.modified instanceof Date);
+    assert.isTrue(post instanceof Post);
+    assert.deepEqual(FOO, post.body);
+    assert.deepEqual(FOO_HTML, post.markdown); // Test markdown helper.
+    assert.isTrue(post.created instanceof Date);
+    assert.isFalse(post.modified instanceof Date);
     post = Post.update({id: 1, body: BAR}); // Test updating helper.
-    assertTrue(post instanceof Storable);
+    assert.isTrue(post instanceof Storable);
     post = Post.all()[0];
-    assertNotNull(post);
-    assertEqual(BAR, post.body);
-    assertEqual(BAR_HTML, post.markdown);
-    assertTrue(post.modified instanceof Date);
+    assert.isNotNull(post);
+    assert.deepEqual(BAR, post.body);
+    assert.deepEqual(BAR_HTML, post.markdown);
+    assert.isTrue(post.modified instanceof Date);
 };
 
 if (require.main == module) {
     require('ringo/webapp').main(module.directory + '../app');
-    require('ringo/unittest').run(exports);
+    require('test').run(exports);
     system.exit(1);
 }
