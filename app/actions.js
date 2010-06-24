@@ -36,28 +36,32 @@ exports.main = function (req, id) {
     });
 };
 
-exports.create = function (req) {
-    if (req.session.data.authorized && req.isXhr && req.isPost) {
-        var newPost = Post.create({body: req.params.body});
-        req.session.data.postsRangeFrom++;
-        req.session.data.postsRangeTo++;
-        return skinResponse('skins/post.html', {
-            authorized: req.session.data.authorized,
-            post: newPost
-        });
+exports.create = {
+    POST: function (req) {
+        if (req.session.data.authorized && req.isXhr) {
+            var newPost = Post.create({body: req.params.body});
+            req.session.data.postsRangeFrom++;
+            req.session.data.postsRangeTo++;
+            return skinResponse('skins/post.html', {
+                authorized: req.session.data.authorized,
+                post: newPost
+            });
+        }
+        return redirectResponse('/');
     }
-    return redirectResponse('/');
 };
 
-exports.update = function (req) {
-    if (req.session.data.authorized && req.isXhr && req.isPost) {
-        var updatedPost = Post.update({
-            id: req.params.id,
-            body: req.params.body
-        });
-        return skinResponse('skins/post.html', {post: updatedPost});
+exports.update = {
+    POST: function (req) {
+        if (req.session.data.authorized && req.isXhr) {
+            var updatedPost = Post.update({
+                id: req.params.id,
+                body: req.params.body
+            });
+            return skinResponse('skins/post.html', {post: updatedPost});
+        }
+        return redirectResponse('/');
     }
-    return redirectResponse('/');
 };
 
 exports.more = function (req) {
