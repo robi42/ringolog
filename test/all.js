@@ -1,16 +1,16 @@
 // Run w/, e.g.: ringo test/all
 
 addToClasspath('./config');
-var assert = require('assert');
-var http = require('ringo/httpclient');
+var assert = require('assert'),
+    http = require('ringo/httpclient');
 var {Markdown} = require('ringo/markdown');
-var {Post} = require(module.directory + '../app/model');
-var {baseUrl} = require(module.directory + '../app/config');
-const LOGIN_URL = baseUrl + 'login';
-const FOO = '**foo**';
-const FOO_HTML = (new Markdown).process(FOO);
-const BAR = '*bar*';
-const BAR_HTML = (new Markdown).process(BAR);
+var {Post} = require(module.resolve('../app/model'));
+var {baseUrl} = require(module.resolve('../app/config'));
+const LOGIN_URL = baseUrl + 'login',
+    FOO = '**foo**',
+    FOO_HTML = (new Markdown).process(FOO),
+    BAR = '*bar*',
+    BAR_HTML = (new Markdown).process(BAR);
 
 exports.testAuth = function () {
     var res = http.get(LOGIN_URL);

@@ -1,5 +1,5 @@
 exports.httpConfig = {
-    staticDir: 'static'
+    staticDir: './static'
 };
 
 exports.urls = [
@@ -9,13 +9,14 @@ exports.urls = [
 
 exports.middleware = [
     'ringo/middleware/basicauth',
+    'ringo/middleware/gzip',
     'ringo/middleware/etag',
     'ringo/middleware/responselog',
     'ringo/middleware/error',
     'ringo/middleware/notfound'
-    // 'ringo/middleware/profiler'
 ];
 
+// the JSGI app
 exports.app = require('ringo/webapp').handleRequest;
 
 exports.macros = [
@@ -40,6 +41,16 @@ exports.jars = [
 ];
 
 exports.store = require('ringo/storage/hibernate');
+// Playing around with `ringo-sqlstore`.
+// var {Store} = require('ringo/storage/sql/store');
+// exports.store = new Store({
+    // url: 'jdbc:h2:mem:test', // For testing.
+    // driver: 'com.h2.Driver'
+    // url: 'jdbc:mysql://localhost/ringolog_sqlstore', // For dev/production.
+    // driver: 'com.mysql.jdbc.Driver',
+    // username: 'ringo',
+    // password: 'secret'
+// });
 
 exports.memcached = {host: 'localhost', port: 11211};
 

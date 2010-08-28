@@ -1,6 +1,6 @@
 export('Post', 'queryPosts', 'cache', 'months');
 addToClasspath('./config');
-include('ringo/markdown');
+var {Markdown} = require('ringo/markdown');
 var {memcached} = require('./config');
 
 var cache = cache || typeof net.spy.memcached.MemcachedClient === 'function' ?
@@ -22,10 +22,7 @@ var Post = require('./config').store.defineEntity('Post', {
 });
 
 Post.create = function (data) {
-    var post = new Post({
-        body: data.body,
-        created: new Date()
-    });
+    var post = new Post({body: data.body, created: new Date()});
     post.save();
     return post;
 };
