@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+<title>Ringolog<% post._id | prefix " - Post #" %></title>
+<link rel="alternate" type="application/atom+xml" title="Posts (Atom)" href="/feed"/>
+<link rel="alternate" type="application/rss+xml" title="Posts (RSS)" href="/feed/rss"/>
+<link rel="stylesheet" href="/static/style.css"/>
+<link rel="stylesheet" href="/static/sh_hns.min.css"/>
+<link rel="stylesheet" href="/static/jquery-treeview/jquery.treeview.css"/>
+<script type="text/javascript" src="/static/sh_main.min.js"></script>
+<script type="text/javascript" src="/static/sh_javascript.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/jquery-treeview/jquery.treeview.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+    $(document).ready(function () {
+        $('#years').treeview({
+            persist: 'location'
+        });
+    });
+//]]>
+</script>
+<% render head %>
+</head>
+<body onload="sh_highlightDocument();">
+  <div id="column">
+    <a href="http://github.com/robi42/ringolog/tree/hibernate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"/></a>
+    <div id="header">
+      <% render header %>
+    </div>
+    <div id="content">
+      <% render content %>
+    </div>
+    <div id="footer">
+      <% render footer %>
+    </div>
+  </div>
+  <div id="sidebar">
+    <% archive %>
+    <div id="recentcomments" class="dsq-widget">
+      <h2 class="dsq-widget-title">
+        Latest Comments
+        <a href="http://ringolog.disqus.com/latest.rss" title="Subscribe">
+          <img src="/static/feed-icon-14x14.png" alt="Feed"/>
+        </a>
+      </h2>
+      <script type="text/javascript" src="http://disqus.com/forums/ringolog/recent_comments_widget.js?num_items=5&amp;hide_avatars=0&amp;avatar_size=24&amp;excerpt_length=70"></script>
+    </div>
+  </div>
+  <script type="text/javascript" src="/static/wmd/wmd.js"></script>
+  <script type="text/javascript">
+  //<![CDATA[
+      (function() {
+          var links = document.getElementsByTagName('a');
+          var query = '?';
+          for (var i = 0; i < links.length; i++) {
+              if (links[i].href.indexOf('#disqus_thread') >= 0) {
+                  query += 'url' + i + '=' +
+                          encodeURIComponent(links[i].href) + '&amp;';
+              }
+          }
+          document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/ringolog/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+  //]]>
+  </script>
+</body>
+</html>
+
+<% subskin content %>
+Overwrite this subskin to add content.
+
+<% subskin header %>
+<% render ./menu.html %>
+<h1>
+  <a href="/" title="Home">Ringolog</a>
+  <a href="/feed" title="Subscribe">
+    <img src="/static/feed-icon-28x28.png" alt="Feed"/>
+  </a>
+</h1>
+
+<% subskin footer %>
+<small>
+  <strong>
+    Powered by <a href="http://ringojs.org/" target="_blank">RingoJS</a>
+  </strong>
+</small>

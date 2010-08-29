@@ -1,0 +1,21 @@
+<div id="archive">
+  <h2>Archive</h2>
+  <ul id="years" class="treeview">
+    <% for year in <% years %> render yearListItem %>
+  </ul>
+</div>
+
+<% subskin yearListItem %>
+<li class="expandable closed">
+  <a href="/archive/<% year.value %>"><% year.value %></a>
+  <ul>
+    <% for month in <% year.months %> render monthListItem %>
+  </ul>
+</li>
+
+<% subskin monthListItem %>
+<li>
+  <a href="/archive/<% year.value %>/<% month | capitalize %>">
+    <% month | capitalize %>
+  </a>
+</li>

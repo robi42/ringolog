@@ -1,0 +1,10 @@
+<div id="menu">
+  <% if not <% authorized %> render login %>
+  <% if <% authorized %> render logout %>
+</div>
+
+<% subskin login %>
+<a href="/login" rel="nofollow">Login</a>
+
+<% subskin logout %>
+<a href="/logout" rel="nofollow">Logout</a>

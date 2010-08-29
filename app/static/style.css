@@ -1,0 +1,163 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(background.png);
+    background-repeat: repeat-x;
+}
+
+body, textarea {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 90%;
+    line-height: 160%;
+}
+
+#column {
+    margin-left: 15%;
+    width: 60%;
+    max-width: 600px;
+    float: left;
+}
+
+h1, h2, h3 {
+    font-family: 'Trebuchet MS', 'Times New Roman', serif;
+    letter-spacing: .05em;
+}
+
+#header h1 {
+    font-size: 300%;
+}
+
+#menu {
+    float: right;
+    margin: 1em .5em 0 0;
+}
+
+#menu a, #more, .comments, .edit {
+    border-radius: .3em;
+    -webkit-border-radius: .3em;
+    -moz-border-radius: .3em;
+    padding: .3em;
+}
+
+#menu a:hover, #more:hover, .comments:hover, .edit:hover {
+    background-color: blue;
+    color: #fff;
+}
+
+#menu a:active, #more:active, .comments:active, .edit:active {
+    background-color: dodgerblue;
+    color: darkorange;
+}
+
+.post {
+    border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    box-shadow: 2px 2px 6px #888;
+    -webkit-box-shadow: 2px 2px 6px #888;
+    -moz-box-shadow: 2px 2px 6px #888;
+    margin-bottom: 1.7em;
+    padding: .1em 1em 1em 1em;
+    background-color: #eee;
+    overflow: auto;
+}
+
+.post img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.caption {
+    float: right;
+}
+
+#preview {
+    border: 1px dotted grey;
+}
+
+#dummy {
+    background-color: #fff;
+    display: none;
+}
+
+#pagination a {
+    display: block;
+    width: 98.5%;
+    text-align: center;
+    border: 1px solid dodgerblue;
+}
+
+#footer {
+    margin-top: 1.5em;
+    padding-top: .5em;
+    padding-bottom: 1em;
+    border-top: 1px dotted grey;
+    text-align: center;
+    opacity: .6;
+}
+
+#sidebar {
+    position: absolute;
+    top: 11.3em;
+    margin-right: 1%;
+    margin-left: 77%;
+    width: 22%;
+}
+
+#archive {
+    margin-bottom: 1.8em;
+}
+
+.treeview li {
+    line-height: normal;
+}
+
+#form a {
+    float: right;
+}
+
+textarea {
+    width: 99%;
+    height: 15em;
+}
+
+textarea:hover, textarea:focus {
+    border: 1px solid #000;
+}
+
+blockquote {
+    font-style: italic;
+}
+
+img {
+    border: 0;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: dodgerblue;
+}
+
+a:active {
+    color: darkorange;
+}
+
+#header img {
+    vertical-align: middle;
+}
+
+#header h1 a:hover {
+    color: blue;
+}
+
+#header h1 a:active {
+    color: blue;
+}

@@ -1,17 +1,49 @@
 // Run w/, e.g.: ringo test/all
 
-include('ringo/unittest');
-var http = require('ringo/httpclient');
+addToClasspath('./config');
+var assert = require('assert'),
+    http = require('ringo/httpclient');
+var {Markdown} = require('ringo/markdown');
+var {Post} = require(module.resolve('../app/model'));
+var {baseUrl} = require(module.resolve('../app/config'));
+const LOGIN_URL = baseUrl + 'login',
+    FOO = '**foo**',
+    FOO_HTML = (new Markdown).process(FOO),
+    BAR = '*bar*',
+    BAR_HTML = (new Markdown).process(BAR);
 
 exports.testAuth = function () {
-    http.get('http://localhost:8080/login', function (data, status) {
-        assertMatch(/Unauthorized/, data);
-        assertEqual(401, status);
+    var res = http.get(LOGIN_URL);
+    assert.matches(res.content, /Unauthorized/);
+    assert.deepEqual(401, res.status);
+    res = http.request({
+        url: LOGIN_URL,
+        username: 'admin',
+        password: 'secret'
     });
+    assert.matches(res.content, /See other/);
+    assert.deepEqual(303, res.status);
 };
 
-if (require.main == module.id) {
-    require('ringo/webapp').main(module.directory);
-    require('ringo/unittest').run(exports);
-    require('ringo/shell').quit();
+exports.testModel = function () {
+    var post = Post.create({body: FOO}); // Test creation helper.
+    post = Post.get(1);
+    assert.isTrue(post instanceof Post);
+    assert.deepEqual(FOO, post.body);
+    assert.deepEqual(FOO_HTML, post.markdown); // Test markdown helper.
+    assert.isTrue(post.created instanceof Date);
+    assert.isFalse(post.modified instanceof Date);
+    post = Post.update({id: 1, body: BAR}); // Test updating helper.
+    assert.isTrue(post instanceof Storable);
+    post = Post.all()[0];
+    assert.isNotNull(post);
+    assert.deepEqual(BAR, post.body);
+    assert.deepEqual(BAR_HTML, post.markdown);
+    assert.isTrue(post.modified instanceof Date);
+};
+
+if (require.main == module) {
+    require('ringo/webapp').main(module.directory + '../app');
+    require('test').run(exports);
+    system.exit(1);
 }
