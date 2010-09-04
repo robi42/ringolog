@@ -96,8 +96,8 @@
                 },
                 _onclose: function(m) {
                     this._ws = null;
-                    $('#join').toggleClas('hidden');
-                    $('#joined').toggleClas('hidden');
+                    $('#join').toggleClass('hidden');
+                    $('#joined').toggleClass('hidden');
                     $('#username').focus();
                     $('#chat').html('');
                 }
@@ -123,7 +123,7 @@
                 }
                 return true;
             });
-            $('#sendB').live('click', function(ev) {
+            $('#sendB').live('click', function() {
                 room.chat($('#phrase').val());
                 $('#phrase').val('');
                 return false;
