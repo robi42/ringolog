@@ -15,35 +15,35 @@ const LOGIN_URL = baseUrl + 'login',
 exports.testAuth = function () {
     var res = http.get(LOGIN_URL);
     assert.matches(res.content, /Unauthorized/);
-    assert.deepEqual(401, res.status);
+    assert.strictEqual(401, res.status);
     res = http.request({
         url: LOGIN_URL,
         username: 'admin',
         password: 'secret'
     });
     assert.matches(res.content, /See other/);
-    assert.deepEqual(303, res.status);
+    assert.strictEqual(303, res.status);
 };
 
 exports.testModel = function () {
     var post = Post.create({body: FOO}); // Test creation helper.
     post = Post.get(1);
     assert.isTrue(post instanceof Post);
-    assert.deepEqual(FOO, post.body);
-    assert.deepEqual(FOO_HTML, post.markdown); // Test markdown helper.
+    assert.strictEqual(FOO, post.body);
+    assert.strictEqual(FOO_HTML, post.markdown); // Test markdown helper.
     assert.isTrue(post.created instanceof Date);
     assert.isFalse(post.modified instanceof Date);
     post = Post.update({id: 1, body: BAR}); // Test updating helper.
     assert.isTrue(post instanceof Storable);
     post = Post.all()[0];
     assert.isNotNull(post);
-    assert.deepEqual(BAR, post.body);
-    assert.deepEqual(BAR_HTML, post.markdown);
+    assert.strictEqual(BAR, post.body);
+    assert.strictEqual(BAR_HTML, post.markdown);
     assert.isTrue(post.modified instanceof Date);
 };
 
 if (require.main == module) {
-    require('ringo/webapp').main(module.directory + '../app');
+    require('ringo/webapp').main(module.resolve('../app'));
     require('test').run(exports);
-    system.exit(1);
+    system.exit(0);
 }
