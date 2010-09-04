@@ -19,6 +19,8 @@ exports.middleware = [
 // the JSGI app
 exports.app = require('ringo/webapp').handleRequest;
 
+exports.extensions = ['websocket-extension'];
+
 exports.macros = [
     './helpers',
     'ringo/skin/macros',
