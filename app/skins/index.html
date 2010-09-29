@@ -4,7 +4,7 @@
 <script type="text/javascript">
 //<![CDATA[
     $(function () {
-        $('#submit').click(function () {
+        $('#submit').click(function () { // Handle posting.
             if ($('#data').val() === '') {
                 alert('Please provide some content.');
                 return false;
@@ -13,12 +13,12 @@
                 $('#posts .post').first().before(data);
                 sh_highlightDocument();
                 $('.wmd-preview').empty();
-                $('#posts .post').first().effect('highlight', {}, 1500);
+                $('#posts .post:first').effect('highlight', {}, 1500);
                 $('#data').val('');
             });
             return false;
         });
-        $('#more').click(function () {
+        $('#more').click(function () { // Handle pagination.
             $.get('/more', function (data) {
                 if (!data) {
                     alert('Nothing to see here, move along.');
@@ -28,7 +28,7 @@
             });
             return false;
         });
-        if (!!window.WebSocket) {
+        if (!!window.WebSocket) { // Handle chat.
             $('#archive').before(
                 '<div id="websocket-chat" style="margin-bottom: 1.8em">' +
                     '<h2>WebSocket Chat FTW</h2>' +
@@ -47,7 +47,7 @@
                 '</div>'
             );
             var room = {
-                join: function(name) {
+                join: function (name) {
                     this._username = name;
                     var location = document.location.toString().
                             replace('http://', 'ws://').replace('https://', 'wss://');
@@ -56,24 +56,24 @@
                     this._ws.onmessage = this._onmessage;
                     this._ws.onclose = this._onclose;
                 },
-                _onopen: function() {
+                _onopen: function () {
                     $('#join').toggleClass('hidden');
                     $('#joined').toggleClass('hidden');
                     $('#phrase').focus();
                     room._send(room._username, 'has joined!');
                 },
-                _send: function(user, message) {
+                _send: function (user, message) {
                     user = user.replace(':', '_');
                     if (this._ws) {
                         this._ws.send(user + ':' + message);
                     }
                 },
-                chat: function(text) {
+                chat: function (text) {
                     if (text != null && text.length > 0) {
                         room._send(room._username, text);
                     }
                 },
-                _onmessage: function(m) {
+                _onmessage: function (m) {
                     if (m.data) {
                         var c = m.data.indexOf(':');
                         var from = m.data.substring(0, c).
@@ -94,7 +94,7 @@
                         chat.scrollTop = chat.scrollHeight - chat.clientHeight;
                     }
                 },
-                _onclose: function(m) {
+                _onclose: function () {
                     this._ws = null;
                     $('#join').toggleClass('hidden');
                     $('#joined').toggleClass('hidden');
@@ -103,27 +103,23 @@
                 }
             };
             $('#username').attr('autocomplete', 'OFF');
-            $('#username').keyup(function(e) {
+            $('#username').keyup(function (e) {
                 if (e.keyCode === 13 || e.keyCode === 10) {
                     room.join($('#username').val());
-                    return false;
                 }
-                return true;
             });
-            $('#joinB').live('click', function() {
+            $('#joinB').live('click', function () {
                 room.join($('#username').val());
                 return false;
             });
             $('#phrase').attr('autocomplete', 'OFF');
-            $('#phrase').keyup(function(e) {
+            $('#phrase').keyup(function (e) {
                 if (e.keyCode === 13 || e.keyCode === 10) {
                     room.chat($('#phrase').val());
                     $('#phrase').val('');
-                    return false;
                 }
-                return true;
             });
-            $('#sendB').live('click', function() {
+            $('#sendB').live('click', function () {
                 room.chat($('#phrase').val());
                 $('#phrase').val('');
                 return false;

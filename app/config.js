@@ -8,12 +8,14 @@ exports.urls = [
 ];
 
 exports.middleware = [
-    'ringo/middleware/basicauth',
-    'ringo/middleware/gzip',
-    'ringo/middleware/etag',
-    'ringo/middleware/responselog',
-    'ringo/middleware/error',
-    'ringo/middleware/notfound'
+    require('ringo/middleware/basicauth').middleware({ // 'secret' ;)
+        '/login': {admin: 'e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4'}
+    }),
+    require('ringo/middleware/gzip').middleware,
+    require('ringo/middleware/etag').middleware,
+    require('ringo/middleware/responselog').middleware,
+    require('ringo/middleware/error').middleware,
+    require('ringo/middleware/notfound').middleware
 ];
 
 // the JSGI app
@@ -23,13 +25,9 @@ exports.extensions = ['websocket-extension'];
 
 exports.macros = [
     './helpers',
-    'ringo/skin/macros',
-    'ringo/skin/filters'
+    require('ringo/skin/macros'),
+    require('ringo/skin/filters')
 ];
-
-exports.auth = {
-    '/login': {admin: 'e5e9fa1ba31ecd1ae84f75caaa474f3a663f05f4'} // 'secret' ;)
-};
 
 exports.baseUrl = 'http://localhost:8080/'; // Used by feeds and tests.
 

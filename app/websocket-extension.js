@@ -19,7 +19,6 @@ exports.serverStarted = function (server) {
                 }
             });
         };
-
         socket.onclose = function () {
             log.info('onclose: removing member.');
             arrays.remove(members, socket);
